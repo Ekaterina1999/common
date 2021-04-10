@@ -1,4 +1,8 @@
 import { Route, Switch, Link } from 'react-router-dom';
+import Notification from './notification';
+import FAQ from './Faq';
+
+import './App.css';
 // function HeaderLinks(props) {
 //     const link = props.link;
 //     return(
@@ -41,19 +45,11 @@ import { Route, Switch, Link } from 'react-router-dom';
   )
 
   const Faq = () => (
-      <div>
-          <h1>Страница для часто задаваемых вопросов</h1>
-          <ul>
-              <li>Как этим вообще пользоваться?</li>
-              <li>Почему оно работает?</li>
-              <li>Я что-то нажал и оно появилось. Помогите!</li>
-              <li>Котлетка.</li>
-              <li>С пюрешкой?</li>
-          </ul>
-          <p>Ответов на все эти вопросы у нас нет. Звиняйте.</p>
-          <p>P.S. С пюрешкой.</p>
-          <h1>P.S.S. It's alive! ALIVE!</h1>
-      </div>
+    <FAQ />
+  )
+
+  const Cards = () => (
+      <Notification />
   )
   // Конец страниц
 
@@ -69,6 +65,7 @@ export const MainUrls = () => (
             <Route exact path='/about' component = {About}/>
             <Route exact path='/contacts' component = {Contacts}/>
             <Route exact path='/faq' component = {Faq}/>
+            <Route exact path='/cards' component = {Cards}/>
         </Switch>
     </main>
 )
@@ -78,12 +75,13 @@ export const MainUrls = () => (
 const Header = () => (
     <header>
       <nav>
-        <h1>Типа меню навигации, ага</h1>
+        <h1 className = "title">Навигация, ага</h1>
         <ul>
           <li><Link to='/'>Главная</Link></li>
           <li><Link to='/about'>О нас</Link></li>
           <li><Link to='/contacts'>Контакты</Link></li>
           <li><Link to='/faq'>FAQ</Link></li>
+          <li><Link to='/cards'>Карточки</Link></li>
         </ul>
         <hr></hr>
       </nav>
