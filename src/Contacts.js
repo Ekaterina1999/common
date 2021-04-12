@@ -1,26 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import db from "./Contfirebase.config";
+import React, { useEffect, useState } from "react";
 
-function App() {
+function CONTACTS() {
+  const [aboutCt, setAboutCt] = useState([]);
+  //const [NameCt, setNameCt] = useState()
+
+  async function fetchFaqs() {
+    const snapshot = await db.collection("Contacts").get();
+    console.log(snapshot.docs);
+    snapshot.docs.map((item) => {
+      console.log(typeof item.data());
+    });
+    setAboutCt(snapshot.docs);
+  }
+
+  useEffect(() => {
+    fetchFaqs();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-          Это страница Контакты
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1 className="title">Contacts</h1>
+
+      <div className="cardContainer">
+        
+        {aboutCt.map((item) => (
+          <div className="card">
+            <h3>{item.data().NameCt}</h3> 
+            <p>{item.data().AboutCt}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
-export default App;
+export default CONTACTS;
